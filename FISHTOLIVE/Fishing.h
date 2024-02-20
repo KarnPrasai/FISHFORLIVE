@@ -6,7 +6,7 @@ using namespace std;
 class Fishing
 {
 	public:
-		void GoFishing();
+		void GoFishing(); 
 		void HookAFish();
 };
 

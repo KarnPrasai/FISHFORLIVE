@@ -2,6 +2,8 @@
 #include <string>
 #include <thread>
 #include <chrono>
+#include "Shop.h"
+#include "Fishing.h"
 
 using namespace std;
 
@@ -48,20 +50,11 @@ void Player::PlaceChecker(int playergoing)
     }
 }
 
-void Player::Shop()
-{
-    struct Rod {
-        string name;
-        int cost;
-    };
-    cout << "you can upgrade your stuff here.\n";
-    cout << "================================\n";
-
-}
 
 int main()
 {
     Player p;
     //p.GoFishing();
-    p.PlaceTravel();
+    //p.PlaceTravel();
+    p.Shop();
 }
