@@ -8,8 +8,8 @@ class Fishing
 	public:
 		string fish[400];
 		int  fish_amount[400];
-		int playergoing;
-		void GoFishing(); 
+		int playergoing = 1;
+		void GoFishing();
 		void HookAFish();
 };
 
