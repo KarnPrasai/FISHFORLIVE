@@ -54,7 +54,6 @@ void Fishing::HookAFish()
     string namefish[6][7] = { {"aaa1","bbb1","ccc1","ddd1","eee1","fff1","ggg1"},{"aaa2","bbb2","ccc2","ddd2","eee2","fff2","ggg2"} ,{ "aaa3","bbb3","ccc3","ddd3","eee3","fff3","ggg3" }, { "aaa4","bbb4","ccc4","ddd4","eee4","fff4","ggg4" } ,{ "aaa5","bbb5","ccc5","ddd5","eee5","fff5","ggg5" }, { "aaa6","bbb6","ccc6","ddd6","eee6","fff6","ggg6" } };
     int costfish[6][7] = { {10,20,30,40,50,60,70},{10,20,30,40,50,60,70}, {10,20,30,40,50,60,70}, {10,20,30,40,50,60,70},{10,20,30,40,50,60,70},{10,20,30,40,50,60,70} };
     int count = 0;
-    int slotfish = 0;
     int typefish = rand() % 7;
     for (int i = 0; i < typefish + 1; ++i)
     {

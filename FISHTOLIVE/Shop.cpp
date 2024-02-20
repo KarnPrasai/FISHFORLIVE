@@ -37,6 +37,16 @@ void Shop::upgrade(int &money) {
 	}
 	while(shopaction != 3);
 
-	cout << "Good bye,see you again next time.";
-	
-	}
+void Shop::sell(string fishname, int quantity,int money) {
+    for (auto& Fishinbag : fishs) {
+        if (Fishinbag.fish_name == fishname) {
+            cout << "Fish quantity : "<< Fishinbag.quantity;
+            cout << "Fish price : " << Fishinbag.price;
+            Fishinbag.quantity -= quantity;
+            money += quantity * (Fishinbag.price);
+            cout << "You sold " << quantity << " " << Fishinbag.fish_name << "(s) for $" << Fishinbag.price * quantity << endl;
+            
+        }
+    }
+    cout << "Product not found\n";
+}
