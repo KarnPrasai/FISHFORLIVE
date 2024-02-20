@@ -3,26 +3,25 @@
 
 using namespace std;
 
-struct Upgrade {
-	string gear_name;
-	int price;
-	int level;
+struct Fishrod {
+	int rodlevel;
+	int rodprice;
 };
 
-struct Fishinbag {
-	string fish_name;
-	int price;
-	int quantity;
+struct Boat {
+	int boatlevel;
+	int boatprice;
 };
 
 class Shop {
+		
 
-		vector<Upgrade> gears;
-		vector<Fishinbag>fishs;
 
 	public:
-		void shoplist();
-		void upgrade(string gearname, int quantity,int money);
-		void sell(string fishname, int quantity,int money);
+		int money;
+		void upgrade(int &money); //level up = How many level do you want to up
+		void sell();
+		void boatlevel();
+		void rodlevel();
 
 };
