@@ -12,6 +12,7 @@ class Player
 public:
     int money = 0;
     int boat_lvl = 1;
+    int playergoing;
     string FishingArea[7] = { "River","Lake","Beach","Sea","Deep Sea","Island" };
     void PlaceTravel();
     void PlaceChecker(int);
@@ -22,20 +23,17 @@ public:
 
 void Player::PlaceTravel()
 {
-    cout << "Input your Boat level :";
-    cin >> boat_lvl;
-    int playergoing;
+    string FishingArea[] = { "River","Lake","Beach","Sea","Deep Sea","Island" };
     cout << "Which place do you want to go?\n";
     cout << "================================\n";
     for (int i = 0; i < 6; i++)
     {
-        cout << "|| " << i + 1 << " " << FishingArea[i] << ". ||\n";
+        cout << " " << i + 1 << " " << FishingArea[i] << ". \n";
     }
     cout << "================================\n";
     cout << "Input Number of the place :";
     cin >> playergoing;
-    PlaceChecker(playergoing);
-
+    cout << "Going to " << FishingArea[playergoing - 1] << "\n";
 }
 
 void Player::PlaceChecker(int playergoing)
@@ -54,7 +52,9 @@ void Player::PlaceChecker(int playergoing)
 int main()
 {
     Player p;
-    //p.GoFishing();
-    //p.PlaceTravel();
-    p.Shop();
+    Fishing pp;
+    p.PlaceTravel();
+    pp.playergoing = p.playergoing;
+    pp.GoFishing();
+    //p.Shop();
 }
