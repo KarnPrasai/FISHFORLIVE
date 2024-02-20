@@ -3,10 +3,10 @@
 
 using namespace std;
 
-struct Gear {
+struct Upgrade {
 	string gear_name;
 	int price;
-	int quantity;
+	int level;
 };
 
 struct Fishinbag {
@@ -17,11 +17,12 @@ struct Fishinbag {
 
 class Shop {
 
-		vector<Gear> gears;
+		vector<Upgrade> gears;
 		vector<Fishinbag>fishs;
+
 	public:
 		void shoplist();
-		void buy(string gearname, int quantity,int money);
+		void upgrade(string gearname, int quantity,int money);
 		void sell(string fishname, int quantity,int money);
 
 };

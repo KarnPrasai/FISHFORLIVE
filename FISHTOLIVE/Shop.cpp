@@ -9,26 +9,27 @@ using namespace std;
 
 void Shop::shoplist()  {
 	cout << "Gears available in the shop:\n";
-	for (const auto & Gear : gears) {
-		cout << Gear.gear_name << " - $" << Gear.price << " (" << Gear.quantity << " available)\n";
+	for (const auto & Upgrade : gears) {
+		cout << Upgrade.gear_name << " - $" << Upgrade.price << " (" << Upgrade.level << " available)\n";
 	}
 }
 
-void Shop::buy(string gearname,int quantity,int money) {
-    for (auto& Gear : gears) {
-        if (Gear.gear_name == gearname) {
-            if (Gear.quantity >= quantity) {
-                cout << "You bought " << quantity << " " << Gear.gear_name << "(s) for $" << Gear.price * quantity << endl;
-                Gear.quantity -= quantity;
+void Shop::upgrade(string gearname,int quantity,int money) {
+    for (auto& Upgrade : gears) {
+        if (Upgrade.gear_name == gearname) {
+            if (money >= Upgrade.price) {
+                cout << "You upgraded " << Upgrade.gear_name << " to " << Upgrade.level << ".\n";
+                money -= Upgrade.price;
+                cout << "Your money = " << money;
                 
             }
             else {
-                cout << "Sorry, " << Gear.quantity << " " << Gear.gear_name << "(s) available\n";
-                
+                cout << "Sorry,You are brike";
+  
             }
         }
     }
-    cout << "Product not found\n";
+    cout << "Gear not found.\n";
 }
 
 void Shop::sell(string fishname, int quantity,int money) {
