@@ -8,8 +8,8 @@
 using namespace std;
 
 void Shop::shoplist()  {
-	cout << "Gears available in the shop:\n";
-	for (const auto & Upgrade : gears) {
+	/*cout << "Gears available in the shop:\n";
+	for (const auto& Upgrade : gears) {
 		cout << Upgrade.gear_name << " - $" << Upgrade.price << " (" << Upgrade.level << " available)\n";
 	}
 }
@@ -43,5 +43,5 @@ void Shop::sell(string fishname, int quantity,int money) {
             
         }
     }
-    cout << "Product not found\n";
+    cout << "Product not found\n";*/
 }

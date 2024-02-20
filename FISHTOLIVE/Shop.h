@@ -17,8 +17,8 @@ struct Fishinbag {
 
 class Shop {
 
-		vector<Upgrade> gears;
-		vector<Fishinbag>fishs;
+		//vector<Upgrade> gears;
+		//vector<Fishinbag>fishs;
 
 	public:
 		void shoplist();
