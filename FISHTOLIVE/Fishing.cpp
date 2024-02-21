@@ -53,7 +53,6 @@ void Fishing::HookAFish()
     string namefish[6][7] = { {"Crawfish","Carp","Bluegill","Bass","Bream","Trout","Salmon"},{"Catfish","Cod","BullHead","Perch","Salmon","Pike","Sturgoen"} ,{ "Anchovy","Crab","Herring","Halibut","Lionfish","Flounder","Eel" }, { "Red_Mullet","Sardine","Albacore","Octopus","Pufferfish","TigerShark","Dolphin" } ,{ "Squid","Grouper","BlueMarlin","Sunfish","Orca","Tuna","GreatWhiteShark" }, { "Moby_Dick","Megalodon","Kraken","Leviathan","The_Bloop","Hydra","Godzilla" } };
     int costfish[6][7] = { {10,20,30,40,50,60,70},{10,20,30,40,50,60,70}, {10,20,30,40,50,60,70}, {10,20,30,40,50,60,70},{10,20,30,40,50,60,70},{10,20,30,40,50,60,70} };
     int count = 0;
-    int slotfish = 0;
     int typefish = rand() % 7;
     for (int i = 0; i < typefish + 1; ++i)
     {
