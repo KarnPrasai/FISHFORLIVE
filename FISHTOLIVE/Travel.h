@@ -8,6 +8,7 @@ class Travel {
 		string FishingArea[7] = {"River","Lake","Beach","Sea","Deep Sea","Island"};
 		void PlaceTravel();
 		void PlaceChecker(int,int);
+		bool IsTraveled = false;
 
 };
 
