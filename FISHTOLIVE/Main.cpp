@@ -87,7 +87,7 @@ int main()
     while (!player.end)
     {
         travel.IsTraveled = false;
-        cout << "Day : " << m.DayPlayed;
+        cout << "Day : " << m.DayPlayed << endl;
         showtime(m.THour, m.TMin);
         cout << "What would you like to do?\n";
         cout << "|| Stat || Fish || Travel || Shop || \n";

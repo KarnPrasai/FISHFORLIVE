@@ -27,20 +27,27 @@ void Travel::PlaceTravel()
 
 void Travel::PlaceChecker(int playergoing,int Old_lo)
 {
-    if (p.boat_lvl >= playergoing)
+    if (p.location != FishingArea[playergoing - 1])
     {
-        cout << "Going to " << FishingArea[playergoing - 1] << endl;
-        p.location = FishingArea[playergoing - 1];
-        f.playergoing = playergoing;
-        IsTraveled = true;
-    }
-    else if(p.boat_lvl < playergoing)
-    {
-        cout << "You cannot go there!!. Upgrade your boat first\n";
-        f.playergoing = Old_lo;
+        if (p.boat_lvl >= playergoing)
+        {
+            cout << "Going to " << FishingArea[playergoing - 1] << endl;
+            p.location = FishingArea[playergoing - 1];
+            f.playergoing = playergoing;
+            IsTraveled = true;
+        }
+        else if (p.boat_lvl < playergoing)
+        {
+            cout << "You cannot go there!!. Upgrade your boat first\n";
+            f.playergoing = Old_lo;
+        }
+        else
+        {
+            cout << "You cannot go there!!. It's not the way to go\n";
+        }
     }
     else
     {
-        cout << "You cannot go there!!. It's not the way to go\n";       
+        cout << "You have been here. Why you need to go?\n";
     }
 }
