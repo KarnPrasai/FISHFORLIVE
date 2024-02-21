@@ -7,16 +7,67 @@
 
 using namespace std;
 
+//funtion call
+//advantage of level function
 
-void Shop::upgrade(int& money)
+int Shop::boatlevel(int player_boatlevel) {
+    int boatprice;
+    if (player_boatlevel == 1) {
+        boatprice == 50;
+        return boatprice;
+    }
+    else if (player_boatlevel == 2) {
+        boatprice == 100;
+        return boatprice;
+    }
+    else if (player_boatlevel == 3) {
+        boatprice == 150;
+        return boatprice;
+    }
+    else if (player_boatlevel == 4) {
+        boatprice == 170;
+        return boatprice;
+    }
+    else {
+        cout << "This is max level";
+        return 0;
+    }
+
+}
+
+int Shop::rodlevel(int player_rodlevel) {
+    int rodprice;
+    if (player_rodlevel == 1) {
+        rodprice == 60;
+        return rodprice;
+    }
+    else if (player_rodlevel == 2) {
+        rodprice == 80;
+        return rodprice;
+    }
+    else if (player_rodlevel == 3) {
+        rodprice == 100;
+        return rodprice;
+    }
+    else if (player_rodlevel == 4) {
+        rodprice == 120;
+        return rodprice;
+    }
+    else {
+        cout << "This is max level";
+        return 0;
+    }
+
+}
+
+void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
 {
-    Fishrod player_fishrod;
-    Boat player_boatlevel;
+    
     cout << "Which gear do you to upgrade?\n";
     cout << "[1] fishing rod [2] boat [3] quit\n";
-    cout << "Fishing rod upgrade price = " << player_fishrod.rodprice << endl;
-    cout << "Boat upgrade price = " << player_boatlevel.boatprice << endl;
-    cout << " Your money = " << money;
+    cout << "Fishing rod upgrade price = " << rodlevel(player_boatlevel + 1) << endl;
+    cout << "Boat upgrade price = " << boatlevel(player_rodlevel + 1) << endl;
+    cout << " Your money = " << money<<endl;
     int shopaction;
     do
     {
@@ -24,36 +75,51 @@ void Shop::upgrade(int& money)
         if (shopaction == 1) 
         {
 
-            player_fishrod.rodlevel += 1;
+            player_rodlevel += 1;
+            money -= rodlevel(player_boatlevel);
+            cout << "Your money = "<<money<<endl;
             //upgrade fishing rod
         }
         else if (shopaction == 2) 
         {
 
-            player_boatlevel.boatlevel += 1;
+            player_boatlevel += 1;
+            money -= boatlevel(player_boatlevel) << money;
+            cout << "Your money = " << money<<endl;
             //upgrade boat
         }
 
         else 
         {
-            cout << "action not found";
+            cout << "action not found"<<endl;
         }
     }while (shopaction != 3);
 }
-/*
-void Shop::sell(string fishname, int quantity,int money) 
+
+void Shop::sell(int fish_amount[],int slotfish,int &money)
 {
-    for (auto& Fishinbag : fishs) 
+    cout << "Do you really want to sell all fish?\n";
+    cout << "[1] YES [2] NO \n" << "->";
+    int shopsell;
+    do
     {
-        if (Fishinbag.fish_name == fishname) 
+        cin >> shopsell;
+        if (shopsell == 1)
         {
-            cout << "Fish quantity : "<< Fishinbag.quantity;
-            cout << "Fish price : " << Fishinbag.price;
-            Fishinbag.quantity -= quantity;
-            money += quantity * (Fishinbag.price);
-            cout << "You sold " << quantity << " " << Fishinbag.fish_name << "(s) for $" << Fishinbag.price * quantity << endl;
+            int totalprice;
+            for (int i = 0; i <= slotfish; i++) {
+                totalprice += fish_amount[i];
+
+            }
+            money += totalprice;
+            cout << "Your money = " << money<<endl;
             
         }
-    }
-    cout << "Product not found\n";
-}*/
+        else
+        {
+            cout << "action not found"<<endl;
+        }
+    } while (shopsell != 2);
+    cout << "Good luck sir"<<endl;
+
+}
