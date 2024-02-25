@@ -8,6 +8,7 @@ using namespace std;
 
 void Fishing::GoFishing()
 {
+    cout << "=========================================\n";
     atomic<bool> stopAnimation(false);
     std::atomic<bool> fishHooked(false);
     thread animationThread([&]()
@@ -69,7 +70,7 @@ void Fishing::HookAFish()
             if (count == typefish + 1)
             {
                 cout << "Gotcha!! You got " << namefish[playergoing-1][typefish] << "\n";
-                cout <<"cost"<< costfish[playergoing-1][typefish] << "\n";
+                cout <<"cost "<< costfish[playergoing-1][typefish] << "\n";
                 char namef[100];
                 int costf;
                 fish_amount[slotfish] = costfish[playergoing-1][typefish];
@@ -80,6 +81,7 @@ void Fishing::HookAFish()
         else
         {
             cout << "No!!, The line was broken by the fish.\n";
+            break;
         }
     }
 

@@ -20,5 +20,5 @@ class Shop {
 		void sell(int fish_amount[], int slotfish, int& money);
 		int boatlevel(int player_boatlevel);
 		int rodlevel(int player_rodlevel);
-
+		void Shopcontrol();
 };

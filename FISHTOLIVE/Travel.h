@@ -9,7 +9,7 @@ class Travel {
 		void PlaceTravel();
 		void PlaceChecker(int,int);
 		bool IsTraveled = false;
-
+		void Shopcontrol();
 };
 
 

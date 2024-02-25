@@ -10,7 +10,6 @@ Fishing f;
 
 void Travel::PlaceTravel()
 {
-    Fishing f;
     int Old_location = f.playergoing;
     cout << "Which place do you want to go?\n";
     cout << "================================\n";
