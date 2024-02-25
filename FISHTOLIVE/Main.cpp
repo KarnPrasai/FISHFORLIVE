@@ -17,13 +17,15 @@ struct Main
         int QuotaMoney = 150;
         int THour = 6;
         int TMin = 0;
-        
+        int boatlevel = 1;
+        int rodlevel = 1;
 };
 
 Main m;
 Player player;
 Fishing fish;
 Travel travel;
+Shop shopcall;
 int addH = 0, addM = 0;
 
 void Stat()
@@ -75,6 +77,16 @@ void Action(string act)
     }
     if (act == "Shop")
     {
+        cout << "Welcome to shop\n" << "What do you want?\n" << "[1]upgrade [2]sell [3]bye\n" << "->";
+        
+        int shopact;
+        do {
+            
+            cin >> shopact;
+            if (shopact == 1)shopcall.upgrade(m.QuotaMoney, m.boatlevel, m.rodlevel);
+            else if (shopact == 2)shopcall.sell(fish.fish_amount, fish.slotfish, m.QuotaMoney);
+        } while (shopact != 3);
+        cout << "Goodbye";
 
     }
     if (act == "End")

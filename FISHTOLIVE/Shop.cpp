@@ -101,6 +101,7 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
     cout << "Do you really want to sell all fish?\n";
     cout << "[1] YES [2] NO \n" << "->";
     int shopsell;
+    
     do
     {
         cin >> shopsell;
@@ -109,6 +110,10 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
             int totalprice;
             for (int i = 0; i <= slotfish; i++) {
                 totalprice += fish_amount[i];
+
+            }
+            for (int i = 0; i <= slotfish; i++) {
+                fish_amount[i] = 0;
 
             }
             money += totalprice;
