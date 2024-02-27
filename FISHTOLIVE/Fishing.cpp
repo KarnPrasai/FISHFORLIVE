@@ -4,7 +4,43 @@
 #include <chrono>
 #include "Fishing.h"
 
+
 using namespace std;
+
+int FishChance()
+{
+    srand(time(NULL));
+    int per = rand() % 100 + 1;
+    if (per <= 40)
+    {
+        return 1;
+    }
+    if (per <= 65&& per > 40)
+    {
+        return 2;
+    }
+    if (per <= 80 && per > 65)
+    {
+        return 3;
+    }
+    if (per <= 90 && per > 80)
+    {
+        return 4;
+    }
+    if (per <= 97 && per > 90)
+    {
+        return 5;
+    }
+    if (per <= 99 && per > 97)
+    {
+        return 6;
+    }
+    if (per == 100)
+    {
+        return 7;
+    }
+
+}
 
 void Fishing::GoFishing()
 {
@@ -26,7 +62,6 @@ void Fishing::GoFishing()
 
             }
         });
-
     srand(time(NULL));
     int waitTime = rand() % 3 + 2;
     this_thread::sleep_for(chrono::seconds(waitTime));
@@ -54,8 +89,8 @@ void Fishing::HookAFish()
     string namefish[6][7] = { {"Crawfish","Carp","Bluegill","Bass","Bream","Trout","Salmon"},{"Catfish","Cod","BullHead","Perch","Salmon","Pike","Sturgoen"} ,{ "Anchovy","Crab","Herring","Halibut","Lionfish","Flounder","Eel" }, { "Red_Mullet","Sardine","Albacore","Octopus","Pufferfish","TigerShark","Dolphin" } ,{ "Squid","Grouper","BlueMarlin","Sunfish","Orca","Tuna","GreatWhiteShark" }, { "Moby_Dick","Megalodon","Kraken","Leviathan","The_Bloop","Hydra","Godzilla" } };
     int costfish[6][7] = { {10,20,30,40,50,60,70},{10,20,30,40,50,60,70}, {10,20,30,40,50,60,70}, {10,20,30,40,50,60,70},{10,20,30,40,50,60,70},{10,20,30,40,50,60,70} };
     int count = 0;
-    int typefish = rand() % 7;
-    for (int i = 0; i < typefish + 1; ++i)
+    int typefish = FishChance();
+    for (int i = 0; i < typefish+1; ++i)
     {
         int fishact = rand() % 4;
         cout << "Go " << action[fishact] << "(Type " << action[fishact] << ") : ";

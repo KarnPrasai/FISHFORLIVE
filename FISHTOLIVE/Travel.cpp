@@ -15,7 +15,8 @@ void Travel::PlaceTravel()
     cout << "================================\n";
     for (int i = 0; i < 6; i++)
     {
-        cout << " " << i + 1 << " " << FishingArea[i] << ". \n";
+        cout << " " << i + 1 << " " << FishingArea[i] << ".";
+        cout << " (Require Boat level " << i + 1 << ") \n.";
     }
     cout << "================================\n";
     cout << "Input Number of the place : ";
@@ -24,18 +25,18 @@ void Travel::PlaceTravel()
     PlaceChecker(placeinput,Old_location);
 }
 
-void Travel::PlaceChecker(int playergoing,int Old_lo)
+void Travel::PlaceChecker(int placeinput,int Old_lo)
 {
-    if (p.location != FishingArea[playergoing - 1])
+    if (p.location != FishingArea[placeinput - 1])
     {
-        if (p.boat_lvl >= playergoing)
+        if (placeinput <= p.boat_lvl)
         {
-            cout << "Going to " << FishingArea[playergoing - 1] << endl;
-            p.location = FishingArea[playergoing - 1];
-            f.playergoing = playergoing;
+            cout << "Going to " << FishingArea[placeinput - 1] << endl;
+            p.location = FishingArea[placeinput - 1];
+            f.playergoing = placeinput;
             IsTraveled = true;
         }
-        else if (p.boat_lvl < playergoing)
+        else if(placeinput > p.boat_lvl)
         {
             cout << "You cannot go there!!. Upgrade your boat first\n";
             f.playergoing = Old_lo;
