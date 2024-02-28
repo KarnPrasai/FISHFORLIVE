@@ -45,6 +45,7 @@ int FishChance()
 void Fishing::GoFishing()
 {
     cout << "=========================================\n";
+    cout << "\n";
     atomic<bool> stopAnimation(false);
     std::atomic<bool> fishHooked(false);
     thread animationThread([&]()
@@ -84,33 +85,43 @@ void Fishing::GoFishing()
 
 void Fishing::HookAFish()
 {
+    cout << "\n";
     cout << "Fish hooked!\n";
+    cout << "\n";
     string action[] = { "Up", "Down", "Left", "Right" };
-    string namefish[6][7] = { {"Crawfish","Carp","Bluegill","Bass","Bream","Trout","Salmon"},{"Catfish","Cod","BullHead","Perch","Salmon","Pike","Sturgoen"} ,{ "Anchovy","Crab","Herring","Halibut","Lionfish","Flounder","Eel" }, { "Red_Mullet","Sardine","Albacore","Octopus","Pufferfish","TigerShark","Dolphin" } ,{ "Squid","Grouper","BlueMarlin","Sunfish","Orca","Tuna","GreatWhiteShark" }, { "Moby_Dick","Megalodon","Kraken","Leviathan","The_Bloop","Hydra","Godzilla" } };
-    int costfish[6][7] = { {10,20,30,40,50,60,70},{10,20,30,40,50,60,70}, {10,20,30,40,50,60,70}, {10,20,30,40,50,60,70},{10,20,30,40,50,60,70},{10,20,30,40,50,60,70} };
+    string namefish[6][7] = { {"Crawfish","Carp","Bluegill","Bass","Bream","Trout","Salmon"},
+                               {"Catfish","Cod","BullHead","Perch","Salmon","Pike","Sturgoen"} ,
+                               { "Anchovy","Crab","Herring","Halibut","Lionfish","Flounder","Eel" }, 
+                               { "Red_Mullet","Sardine","Albacore","Octopus","Pufferfish","TigerShark","Dolphin" } ,
+                               { "Squid","Grouper","BlueMarlin","Sunfish","Orca","Tuna","GreatWhiteShark" }, 
+                               { "Moby_Dick","Megalodon","Kraken","Leviathan","The_Bloop","Hydra","Godzilla" } };
+    int costfish[6][7] = { {10,20,30,40,50,60,70},{15,30,45,60,80,108,210},
+                         {20,40,60,82,120,216,630}, {25,50,75,100,180,389,1890},
+                         {30,60,102,225,470,820,5670},{12257,20671,36857,51328,96517,170542,497324} };
     int count = 0;
     int typefish = FishChance();
-    for (int i = 0; i < typefish+1; ++i)
+    for (int i = 0; i < typefish; ++i)
     {
         int fishact = rand() % 4;
         cout << "Go " << action[fishact] << "(Type " << action[fishact] << ") : ";
         string playerAction;
         string input;
         cin >> playerAction;
-
-
         if (playerAction == action[fishact])
         {
             count++;
-            if (count == typefish + 1)
+            if (count == typefish)
             {
-                cout << "Gotcha!! You got " << namefish[playergoing-1][typefish] << "\n";
-                cout <<"cost "<< costfish[playergoing-1][typefish] << "\n";
+                cout << "=========================================\n";
+                cout << "\n";
+                cout << "Gotcha!! You got " << namefish[playergoing-1][typefish-1] << "\n";
+                cout <<"cost "<< costfish[playergoing-1][typefish-1] << "\n";
                 char namef[100];
                 int costf;
-                fish_amount[slotfish] = costfish[playergoing-1][typefish];
-                fish[slotfish] = namefish[playergoing-1][typefish];
+                fish_amount[slotfish] = costfish[playergoing-1][typefish-1];
+                fish[slotfish] = namefish[playergoing-1][typefish-1];
                 slotfish += 1;
+                break;
             }
         }
         else

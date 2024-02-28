@@ -5,41 +5,44 @@
 #include "Fishing.h"
 
 using namespace std;
-Player p;
-Fishing f;
 
-void Travel::PlaceTravel()
+
+void Travel::PlaceTravel(string& location,int& playergoing,int& boatlvl)
 {
-    int Old_location = f.playergoing;
+    int Old_location = playergoing;
     cout << "Which place do you want to go?\n";
     cout << "================================\n";
+    cout << "\n";
     for (int i = 0; i < 6; i++)
     {
         cout << " " << i + 1 << " " << FishingArea[i] << ".";
-        cout << " (Require Boat level " << i + 1 << ") \n.";
+        cout << " (Require Boat level " << i + 1 << ") .\n";
     }
+    cout << "\n";
     cout << "================================\n";
+    cout << "\n";
     cout << "Input Number of the place : ";
     int placeinput;
     cin >> placeinput;
-    PlaceChecker(placeinput,Old_location);
+    PlaceChecker(placeinput, Old_location, location, playergoing, boatlvl);
 }
 
-void Travel::PlaceChecker(int placeinput,int Old_lo)
+void Travel::PlaceChecker(int placeinput,int Old_lo,string& playerlocation,int& playergoing,int& boatlvl)
 {
-    if (p.location != FishingArea[placeinput - 1])
+    cout << "================================\n";
+    cout << "\n";
+    if (playerlocation != FishingArea[placeinput - 1])
     {
-        if (placeinput <= p.boat_lvl)
+        if (placeinput <= boatlvl)
         {
             cout << "Going to " << FishingArea[placeinput - 1] << endl;
-            p.location = FishingArea[placeinput - 1];
-            f.playergoing = placeinput;
+            playerlocation = FishingArea[placeinput - 1];
+            playergoing = placeinput;
             IsTraveled = true;
         }
-        else if(placeinput > p.boat_lvl)
+        else if(placeinput > boatlvl)
         {
             cout << "You cannot go there!!. Upgrade your boat first\n";
-            f.playergoing = Old_lo;
         }
         else
         {

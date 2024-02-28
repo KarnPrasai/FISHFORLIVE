@@ -31,6 +31,7 @@ int addH = 0, addM = 0;
 void Stat()
 {
     cout << "=========================================\n";
+    cout << "\n";
     cout << "Day : " << m.DayPlayed << endl;
     cout << "Destination : " << player.location << endl;
     cout << "You have made " << player.money << "/" << m.QuotaMoney << " for this round." << endl;
@@ -72,7 +73,7 @@ void Action(string act)
     }
     else if (act == "Travel")
     {
-        travel.PlaceTravel();
+        travel.PlaceTravel(player.location, fish.playergoing, player.boat_lvl);
         if (travel.IsTraveled)
         {
             SetTime(3, 0);
@@ -80,25 +81,7 @@ void Action(string act)
     }
     else if (act == "Shop")
     {
-            int shopact = 0;
-            do {
-                cout << "=========================================\n";
-                cout << "Welcome to the shop\n";
-                cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
-                cin >> shopact;
-                if (shopact == 1)
-                    shop.upgrade(player.money, player.boat_lvl, player.rod_lvl);
-                else if (shopact == 2)
-                    shop.sell(fish.fish_amount, fish.slotfish, player.money);
-                else if (shopact == 3)
-                    break;  // Exit the loop if the user chooses to quit
-                else {
-                    cout << "Invalid Input, Please try again\n";
-                    cin.clear();    // Clear error flags
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
-                }
-            } while (true);  // Loop indefinitely until the user chooses to quit
-            cout << "Goodbye\n";
+        shop.ShopControl(player.money, player.boat_lvl, player.rod_lvl, fish.fish_amount, fish.slotfish);
         int amin = rand() % 21 + 10;
         SetTime(0, amin);
     }
@@ -117,6 +100,7 @@ int main()
     while (!player.end)
     {
         cout << "=========================================\n";
+        cout << "\n";
         travel.IsTraveled = false;
         cout << "Day : " << m.DayPlayed << endl;
         showtime(m.THour, m.TMin);
@@ -126,6 +110,7 @@ int main()
         string playeraction;
         cin >> playeraction;
         Action(playeraction);
+        cout << "\n";
     }
 }
 

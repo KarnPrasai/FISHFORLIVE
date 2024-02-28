@@ -16,20 +16,28 @@ Fishing fs;
 Shop shopcall;
 int Shop::boatlevel(int player_boatlevel) {
     int boatprice;
-    if (player_boatlevel == 1) {
-        boatprice = 50;
-        return boatprice;
-    }
-    else if (player_boatlevel == 2) {
-        boatprice = 100;
+    if (player_boatlevel == 2) {
+        boatprice = 350;
         return boatprice;
     }
     else if (player_boatlevel == 3) {
-        boatprice = 150;
+        boatprice = 700;
         return boatprice;
     }
     else if (player_boatlevel == 4) {
-        boatprice = 170;
+        boatprice = 1800;
+        return boatprice;
+    }
+    else if (player_boatlevel == 5) {
+        boatprice = 3400;
+        return boatprice;
+    }
+    else if (player_boatlevel == 6) {
+        boatprice = 7300;
+        return boatprice;
+    }
+    else if (player_boatlevel == 7) {
+        boatprice = 80000;
         return boatprice;
     }
     else {
@@ -41,20 +49,28 @@ int Shop::boatlevel(int player_boatlevel) {
 
 int Shop::rodlevel(int player_rodlevel) {
     int rodprice;
-    if (player_rodlevel == 1) {
-        rodprice = 60;
-        return rodprice;
-    }
-    else if (player_rodlevel == 2) {
-        rodprice = 80;
+    if (player_rodlevel == 2) {
+        rodprice = 200;
         return rodprice;
     }
     else if (player_rodlevel == 3) {
-        rodprice = 100;
+        rodprice = 450;
         return rodprice;
     }
     else if (player_rodlevel == 4) {
-        rodprice = 120;
+        rodprice = 1080;
+        return rodprice;
+    }
+    else if (player_rodlevel == 5) {
+        rodprice = 2600;
+        return rodprice;
+    }
+    else if (player_rodlevel == 6) {
+        rodprice = 6400;
+        return rodprice;
+    }
+    else if (player_rodlevel == 7) {
+        rodprice = 20000;
         return rodprice;
     }
     else {
@@ -64,43 +80,21 @@ int Shop::rodlevel(int player_rodlevel) {
 
 }
 
-void Shop::Shopcontrol()
-{
-    int shopact = 0;
-    do
-    {
-
-        cout << "=========================================\n";
-        cout << "Welcome to the shop\n";
-        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
-        cin >> shopact;
-        if (shopact == 1)
-            shopcall.upgrade(ps.money, ps.boat_lvl, ps.rod_lvl);
-        else if (shopact == 2)
-            shopcall.sell(fs.fish_amount, fs.slotfish, ps.money);
-        else if (shopact == 3)
-            break;  // Exit the loop if the user chooses to quit
-        else {
-            cout << "Invalid Input, Please try again\n";
-            cin.clear();    // Clear error flags
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
-        }
-    } while (true);  // Loop indefinitely until the user chooses to quit
-    cout << "Goodbye\n";
-}
-
 void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
 {
     int shopaction;
     do
     {
         cout << "=========================================\n";
+        cout << "\n";
         cout << "Which gear do you to upgrade?\n";
         cout << "Fishing rod level" << player_rodlevel + 1 << " ,upgrade price = " << rodlevel(player_rodlevel + 1) << endl;
         cout << "Boat level " << player_boatlevel + 1 << " ,upgrade price = " << boatlevel(player_boatlevel + 1) << endl;
+        cout << "\n";
         cout << "Your have " << money << "$ for now." << endl;
         cout << "[1] fishing rod [2] boat [3] quit -> ";
         cin >> shopaction;
+        cout << "\n";
         if (shopaction == 1) 
         {
             int rodp = rodlevel(player_rodlevel + 1);
@@ -145,9 +139,11 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
     do
     {
         cout << "=========================================\n";
+        cout << "\n";
         cout << "Do you really want to sell all fish?\n";
         cout << "[1] YES [2] NO -> ";
         cin >> shopsell;
+        cout << "\n";
         if (shopsell == 1)
         {
             int totalprice = 0;
@@ -183,3 +179,27 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
 
 }
 
+void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], int slotfish)
+{
+    int shopact = 0;
+    do {
+        cout << "=========================================\n";
+        cout << "\n";
+        cout << "Welcome to the shop\n";
+        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
+        cin >> shopact;
+        cout << "\n";
+        if (shopact == 1)
+            upgrade(money, boatlvl, rodlvl);
+        else if (shopact == 2)
+            sell(fishamount, slotfish, money);
+        else if (shopact == 3)
+            break;  // Exit the loop if the user chooses to quit
+        else {
+            cout << "Invalid Input, Please try again\n";
+            cin.clear();    // Clear error flags
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+        }
+    } while (true);  // Loop indefinitely until the user chooses to quit
+    cout << "Goodbye\n";
+}

@@ -6,8 +6,8 @@ using namespace std;
 class Travel {
 	public:		
 		string FishingArea[7] = {"River","Lake","Beach","Sea","Deep Sea","Island"};
-		void PlaceTravel();
-		void PlaceChecker(int,int);
+		void PlaceTravel(string&,int&,int&);
+		void PlaceChecker(int,int,string&,int&,int&);
 		bool IsTraveled = false;
 };
 

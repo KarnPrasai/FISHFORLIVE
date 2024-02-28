@@ -7,7 +7,7 @@ using namespace std;
 class Player
 {
     public:
-        int money = 0;
+        int money = 1000;
         int boat_lvl = 1;
         int rod_lvl = 1;
         string location = "River";
