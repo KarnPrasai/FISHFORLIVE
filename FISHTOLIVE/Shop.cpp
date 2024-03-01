@@ -106,7 +106,7 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
             }
             else
             {
-                cout << "You don't have enough money.";
+                cout << "You don't have enough money.\n";
             }
         }
         else if (shopaction == 2) 
