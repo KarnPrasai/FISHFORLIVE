@@ -14,7 +14,7 @@ using namespace std;
 struct Main
 {
         int DayPlayed = 1;
-        int QuotaMoney = 150;
+        int QuotaMoney = 500;
         int THour = 6;
         int TMin = 0;
         int boatlevel = 1;
@@ -27,6 +27,46 @@ Fishing fish;
 Travel travel;
 Shop shop;
 int addH = 0, addM = 0;
+
+void Quotacheck()
+{
+    if (m.DayPlayed % 4 == 0)
+    {
+        if (player.money - m.QuotaMoney < 0)
+        {
+            player.end = true;
+        }
+        else
+        {
+            player.money -= m.QuotaMoney;
+            m.QuotaMoney += 500;
+        }
+    }
+}
+
+void menu()
+{
+    cout << "=========================================\n";
+    cout << "\n";
+    cout << "FISHFORLIVE\n";
+    cout << "What would you like to do?\n";
+    cout << "|| Play || Quit ||\n";
+    cout << "Enter your action : ";
+    string action01;
+    cin >> action01;
+    if (action01 == "Play")
+    {
+        player.end = false;
+    }
+    else if (action01 == "Quit")
+    {
+        player.end = true;
+    }
+    else
+    {
+        cout << "Invalid input. Please choose again." << endl;
+    }
+}
 
 void Stat()
 {
@@ -97,8 +137,11 @@ void Action(string act)
 }
 int main()
 {
+    menu();
+    string playeraction;
     while (!player.end)
     {
+        Quotacheck();
         cout << "=========================================\n";
         cout << "\n";
         travel.IsTraveled = false;
@@ -107,9 +150,17 @@ int main()
         cout << "What would you like to do?\n";
         cout << "|| Stat || Fish || Travel || Shop || \n";
         cout << "Enter your action : ";
-        string playeraction;
         cin >> playeraction;
         Action(playeraction);
+        cout << "\n";
+    }
+    if (player.end == true && playeraction != "End")
+    {
+        cout << "=========================================\n";
+        cout << "\n";
+        cout << "You Lost";
+        cout << "\n";
+        cout << "=========================================\n";
         cout << "\n";
     }
 }
