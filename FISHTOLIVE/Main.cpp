@@ -28,6 +28,16 @@ Fishing fish;
 Travel travel;
 Shop shop;
 int addH = 0, addM = 0;
+bool menuend = false;
+
+string toUpperStr(const string& str) 
+{
+    string upperStr;
+    for (char c : str) {
+        upperStr += toupper(c);
+    }
+    return upperStr;
+}
 
 void Quotacheck()
 {
@@ -47,26 +57,36 @@ void Quotacheck()
 
 void menu()
 {
-    cout << "=========================================\n";
-    cout << "\n";
-    cout << "FISHFORLIVE\n";
-    cout << "What would you like to do?\n";
-    cout << "|| Play || Quit ||\n";
-    cout << "Enter your action : ";
-    string action01;
-    cin >> action01;
-    if (action01 == "Play")
+
+    while (!menuend)
     {
-        player.end = false;
+        cout << "=========================================\n";
+        cout << "\n";
+        cout << "FISHFORLIVE\n";
+        cout << "\n";
+        cout << "What would you like to do?\n";
+        cout << "|| Play || Quit ||\n";
+        cout << "Enter your action : ";
+        string action01;
+        cin >> action01;
+        cout << "\n";
+        if (toUpperStr(action01) == "PLAY")
+        {
+            player.end = false;
+            menuend = true;
+        }
+        else if (toUpperStr(action01) == "QUIT")
+        {
+            player.end = true;
+            menuend = false;
+        }
+        else
+        {
+            cout << "Invalid input. Please choose again." << endl;
+            cout << "\n";
+        }
     }
-    else if (action01 == "Quit")
-    {
-        player.end = true;
-    }
-    else
-    {
-        cout << "Invalid input. Please choose again." << endl;
-    }
+    
 }
 
 void Stat()
@@ -105,11 +125,11 @@ void showtime(int hour, int min)
 void Action(string act)
 {
     cout << "\n";
-    if (act == "Stat")
+    if (act == "STAT")
     {
         Stat();
     }
-    else if (act == "Fishing")
+    else if (act == "FISHING" || act == "FISH")
     {
         HANDLE F = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(F, 3);
@@ -119,7 +139,7 @@ void Action(string act)
         SetTime(ahour, amin);
         SetConsoleTextAttribute(F, 7);
     }
-    else if (act == "Travel")
+    else if (act == "TRAVEL")
     {
         travel.PlaceTravel(player.location, fish.playergoing, player.boat_lvl);
         if (travel.IsTraveled)
@@ -127,7 +147,7 @@ void Action(string act)
             SetTime(3, 0);
         }
     }
-    else if (act == "Shop")
+    else if (act == "SHOP")
     {
         HANDLE S = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(S, 14);
@@ -136,7 +156,7 @@ void Action(string act)
         SetTime(0, amin);
         SetConsoleTextAttribute(S, 7);
     }
-    else if (act == "End")
+    else if (act == "END")
     {
         player.end = true;
     }
@@ -164,7 +184,8 @@ int main()
         SetConsoleTextAttribute(C, 15);
         cout << "Enter your action : ";
         cin >> playeraction;
-        Action(playeraction);
+        Action(toUpperStr(playeraction));
+        cout << "\n";
         SetConsoleTextAttribute(C, 7);
     }
     if (player.end == true && playeraction != "End")

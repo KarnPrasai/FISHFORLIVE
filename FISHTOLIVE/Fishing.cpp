@@ -74,6 +74,7 @@ void Fishing::GoFishing(int &a)
     string input;
     cout << "\nHook!! (Type \"Hook\") : " << flush;
     cin >> input;
+    cout << "\n";
     if (input == "Hook")
     {
         HookAFish(a);
@@ -88,7 +89,6 @@ void Fishing::GoFishing(int &a)
 
 void Fishing::HookAFish(int &a)
 {
-    cout << "\n";
     cout << "Fish hooked!\n";
     cout << "\n";
     string action[] = { "Up", "Down", "Left", "Right" };
