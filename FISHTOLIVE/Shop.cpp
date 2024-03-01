@@ -11,7 +11,6 @@ using namespace std;
 //funtion call
 //advantage of level function
 
-Player ps;
 Fishing fs;
 Shop shopcall;
 int Shop::boatlevel(int player_boatlevel) {
@@ -98,16 +97,24 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
         if (shopaction == 1) 
         {
             int rodp = rodlevel(player_rodlevel + 1);
-            if (money >= rodp)
+            if (player_rodlevel < 7)
             {
-                player_rodlevel += 1;
-                money -= rodp;
-                cout << "Your have" << money << "$ Left." << endl;
+                if (money >= rodp)
+                {
+                    player_rodlevel += 1;
+                    money -= rodp;
+                    cout << "Your have" << money << "$ Left." << endl;
+                }
+                else
+                {
+                    cout << "You don't have enough money.";
+                }
             }
             else
             {
-                cout << "You don't have enough money.";
+                cout << "Your rod is max level";
             }
+            
         }
         else if (shopaction == 2) 
         {

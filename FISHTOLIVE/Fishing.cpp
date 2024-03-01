@@ -7,42 +7,45 @@
 
 using namespace std;
 
-int FishChance()
+int FishChance(int &a)
 {
     srand(time(NULL));
-    int per = rand() % 100 + 1;
-    if (per <= 40)
-    {
-        return 1;
-    }
-    if (per <= 65&& per > 40)
-    {
-        return 2;
-    }
-    if (per <= 80 && per > 65)
-    {
-        return 3;
-    }
-    if (per <= 90 && per > 80)
-    {
-        return 4;
-    }
-    if (per <= 97 && per > 90)
-    {
-        return 5;
-    }
-    if (per <= 99 && per > 97)
-    {
-        return 6;
-    }
-    if (per == 100)
-    {
-        return 7;
-    }
+        
+    int hook[20][20] = {{40,65,80,90,97,99,100},{33,60,75,86,95,98,100}, {26,56,73,84,94,98,100}, {20,48,68,81,92,97,100}, {17,37,62,78,90,97,100}, {15,26,40,65,85,95,100},{10,25,40,50,75,90,100}};
+        int per = rand() % 100 + 1;
+            if (per <= hook[a-1][0])
+            {
+                return 1;
+            }
+            else if (per <= hook[a-1][1])
+            {
+                return 2;
+            }
+            else if (per <= hook[a-1][2])
+            {
+                return 3;
+            }
+            else if (per <= hook[a-1][3])
+            {
+                return 4;
+            }
+            else if (per <= hook[a-1][4])
+            {
+                return 5;
+            }
+            else if (per <= hook[a-1][5])
+            {
+                return 6;
+            }
+            else if (per <= hook[a-1][6])
+            {
+                return 7;
+            }
+    
 
 }
 
-void Fishing::GoFishing()
+void Fishing::GoFishing(int &a)
 {
     cout << "=========================================\n";
     cout << "\n";
@@ -73,7 +76,7 @@ void Fishing::GoFishing()
     cin >> input;
     if (input == "Hook")
     {
-        HookAFish();
+        HookAFish(a);
     }
     else
     {
@@ -83,7 +86,7 @@ void Fishing::GoFishing()
 }
 
 
-void Fishing::HookAFish()
+void Fishing::HookAFish(int &a)
 {
     cout << "\n";
     cout << "Fish hooked!\n";
@@ -99,7 +102,7 @@ void Fishing::HookAFish()
                          {20,40,60,82,120,216,630}, {25,50,75,100,180,389,1890},
                          {30,60,102,225,470,820,5670},{12257,20671,36857,51328,96517,170542,497324} };
     int count = 0;
-    int typefish = FishChance();
+    int typefish = FishChance(a);
     for (int i = 0; i < typefish; ++i)
     {
         int fishact = rand() % 4;

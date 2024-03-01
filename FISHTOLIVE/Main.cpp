@@ -15,7 +15,7 @@ using namespace std;
 struct Main
 {
         int DayPlayed = 1;
-        int QuotaMoney = 500;
+        int QuotaMoney = 150;
         int THour = 6;
         int TMin = 0;
         int boatlevel = 1;
@@ -87,7 +87,7 @@ void SetTime(int addH,int addM)
 {
     m.TMin += addM;
     m.THour += addH + m.TMin / 60;
-    if (m.THour >= 24)
+    if (m.THour >= 18)
     {
         m.DayPlayed += 1;
         m.THour = 6;
@@ -112,9 +112,9 @@ void Action(string act)
     {
         HANDLE F = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(F, 3);
-        fish.GoFishing();
-        int ahour = rand()% 2;
-        int amin = rand() % 31 + 30;
+        fish.GoFishing(player.rod_lvl);
+        int ahour = rand()% 2+1;
+        int amin = rand() % 60;
         SetTime(ahour, amin);
         SetConsoleTextAttribute(F, 7);
     }
