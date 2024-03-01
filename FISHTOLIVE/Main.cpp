@@ -8,6 +8,7 @@
 #include "Fishing.h"
 #include "Travel.h"
 #include <vector>
+#include <windows.h>
 
 using namespace std;
 
@@ -70,12 +71,15 @@ void menu()
 
 void Stat()
 {
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
     cout << "=========================================\n";
     cout << "\n";
     cout << "Day : " << m.DayPlayed << endl;
     cout << "Destination : " << player.location << endl;
+    SetConsoleTextAttribute(h, 13);
     cout << "You have made " << player.money << "/" << m.QuotaMoney << " for this round." << endl;
     cout << "Your have " << player.money << "$ for now." << endl;
+    SetConsoleTextAttribute(h, 7);
     cout << "Boat's level = " << player.boat_lvl << ", Rod's level " << player.rod_lvl << endl;
 }
 
@@ -104,12 +108,15 @@ void Action(string act)
     {
         Stat();
     }
-    else if (act == "Fish")
+    else if (act == "Fishing")
     {
+        HANDLE F = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(F, 3);
         fish.GoFishing();
         int ahour = rand()% 2;
         int amin = rand() % 31 + 30;
         SetTime(ahour, amin);
+        SetConsoleTextAttribute(F, 7);
     }
     else if (act == "Travel")
     {
@@ -121,9 +128,12 @@ void Action(string act)
     }
     else if (act == "Shop")
     {
+        HANDLE S = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(S, 14);
         shop.ShopControl(player.money, player.boat_lvl, player.rod_lvl, fish.fish_amount, fish.slotfish);
         int amin = rand() % 21 + 10;
         SetTime(0, amin);
+        SetConsoleTextAttribute(S, 7);
     }
     else if (act == "End")
     {
@@ -141,6 +151,7 @@ int main()
     string playeraction;
     while (!player.end)
     {
+        HANDLE C = GetStdHandle(STD_OUTPUT_HANDLE);
         Quotacheck();
         cout << "=========================================\n";
         cout << "\n";
@@ -148,11 +159,13 @@ int main()
         cout << "Day : " << m.DayPlayed << endl;
         showtime(m.THour, m.TMin);
         cout << "What would you like to do?\n";
-        cout << "|| Stat || Fish || Travel || Shop || \n";
+        cout << "|| Stat || Fishing || Travel || Shop || \n";
+        SetConsoleTextAttribute(C, 15);
         cout << "Enter your action : ";
         cin >> playeraction;
         Action(playeraction);
         cout << "\n";
+        SetConsoleTextAttribute(C, 7);
     }
     if (player.end == true && playeraction != "End")
     {
