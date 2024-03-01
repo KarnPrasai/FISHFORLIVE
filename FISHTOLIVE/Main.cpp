@@ -104,6 +104,7 @@ void showtime(int hour, int min)
 
 void Action(string act)
 {
+    cout << "\n";
     if (act == "Stat")
     {
         Stat();
@@ -164,7 +165,6 @@ int main()
         cout << "Enter your action : ";
         cin >> playeraction;
         Action(playeraction);
-        cout << "\n";
         SetConsoleTextAttribute(C, 7);
     }
     if (player.end == true && playeraction != "End")
