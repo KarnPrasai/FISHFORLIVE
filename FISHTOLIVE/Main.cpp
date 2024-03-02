@@ -142,7 +142,7 @@ void Action(string act)
     {
         HANDLE F = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(F, 3);
-        int ec = rand() % 20+1;// 20+1;
+        int ec = rand() % 100+1;// 20+1;
         if (ec <= 5)
         {
             event.EventStart(player.money, fish.fish_amount,fish.slotfish,fish.fishN);
