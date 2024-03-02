@@ -122,7 +122,7 @@ void Fishing::HookAFish(int &a)
                 char namef[100];
                 int costf;
                 fish_amount[slotfish] = costfish[playergoing-1][typefish-1];
-                fish[slotfish] = namefish[playergoing-1][typefish-1];
+                fishN[slotfish] = namefish[playergoing-1][typefish-1];
                 slotfish += 1;
                 break;
             }

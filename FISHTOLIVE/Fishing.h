@@ -6,7 +6,7 @@ class Fishing
 {
 	public:
 		int lvl;
-		string fish[400];
+		string fishN[400];
 		int  fish_amount[400] = {};
 		int slotfish = 0;
 		int playergoing = 1;

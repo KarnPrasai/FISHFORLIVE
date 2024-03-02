@@ -97,6 +97,7 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
         }
             
         cout << "\n";
+        cout << "Your boat level = " << player_boatlevel << ",Your fishing rod level = " << player_rodlevel<<"." << endl;
         cout << "Your have " << money << "$ for now." << endl;
         cout << "[1] fishing rod [2] boat [3] quit -> ";
         cin >> shopaction;
@@ -155,7 +156,7 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
     }while (shopaction != 3);
 }
 
-void Shop::sell(int fish_amount[],int slotfish,int &money)
+void Shop::sell(int fish_amount[],int& slotfish,int &money)
 {
     int shopsell = 0;
     do
@@ -168,23 +169,28 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
         cout << "\n";
         if (shopsell == 1)
         {
-            int totalprice = 0;
-            for (int i = 0; i <= slotfish; i++) 
+            if(slotfish <= 0)
             {
-                totalprice += fish_amount[i];
+                cout << "Why are you here? You don't have any fish to sell." << endl;
+            }
+            else
+            {
+                int totalprice = 0;
+                for (int i = 0; i <= slotfish; i++) 
+                {
+                     totalprice += fish_amount[i];
 
+                }
+                cout << "You got  " << totalprice << " from selling " << slotfish << " fishes." << endl;
+                money += totalprice;
+                cout << "Your have " << money << "$ for now." << endl;
+                for (int i = 0; i <= slotfish; i++) 
+                {
+                    fish_amount[i] = 0;
+                }
+                slotfish = 0;
             }
-            for (int i = 0; i <= slotfish; i++) 
-            {
-                fish_amount[i] = 0;
-            }
-            cout << "You got  " << totalprice << " from selling " << slotfish << " fishes." << endl;
-            money += totalprice;
-            cout << "Your have " << money << "$ for now." << endl;
-            for (int i = 0; i <= slotfish; i++) {
-                fish_amount[i] = 0;
-            }
-            slotfish = 0;
+            
         }
         else if (shopsell == 2) 
         {
@@ -201,7 +207,7 @@ void Shop::sell(int fish_amount[],int slotfish,int &money)
 
 }
 
-void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], int slotfish)
+void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], int& slotfish)
 {
     int shopact = 0;
     do {

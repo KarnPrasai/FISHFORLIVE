@@ -9,7 +9,7 @@
 #include "Travel.h"
 #include <vector>
 #include <windows.h>
-
+#include "Event.h"
 using namespace std;
 
 struct Main
@@ -27,6 +27,7 @@ Player player;
 Fishing fish;
 Travel travel;
 Shop shop;
+Event event;
 int addH = 0, addM = 0;
 bool menuend = false;
 
@@ -37,6 +38,14 @@ string toUpperStr(const string& str)
         upperStr += toupper(c);
     }
     return upperStr;
+}
+
+float randomFloat(float min, float max) 
+{
+    float digit = rand() % (int)(max - min) + min;
+    float dot = (float)(rand() % 50 + 50) / 100.0f;    
+    float ran = digit + dot;                       
+    return ran;
 }
 
 void Quotacheck()
@@ -50,7 +59,7 @@ void Quotacheck()
         else
         {
             player.money -= m.QuotaMoney;
-            m.QuotaMoney += 500;
+            m.QuotaMoney *= randomFloat(1, 2);
         }
     }
 }
@@ -133,7 +142,15 @@ void Action(string act)
     {
         HANDLE F = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(F, 3);
-        fish.GoFishing(player.rod_lvl);
+        int ec = rand() % 20+1;// 20+1;
+        if (ec <= 5)
+        {
+            event.EventStart(player.money, fish.fish_amount,fish.slotfish,fish.fishN);
+        }
+        else
+        {
+            fish.GoFishing(player.rod_lvl);
+        }
         int ahour = rand()% 2+1;
         int amin = rand() % 60;
         SetTime(ahour, amin);
@@ -152,6 +169,12 @@ void Action(string act)
         HANDLE S = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(S, 14);
         shop.ShopControl(player.money, player.boat_lvl, player.rod_lvl, fish.fish_amount, fish.slotfish);
+        if (fish.fish_amount == NULL)
+        {
+            for (int i = 0; i < sizeof(fish.fishN); ++i) {
+                fish.fishN[i] = ""; // Set each element to an empty string
+            }
+        }
         int amin = rand() % 21 + 10;
         SetTime(0, amin);
         SetConsoleTextAttribute(S, 7);

@@ -1,4 +1,4 @@
-#pragma SHOP_H
+#ifndef SHOP_H
 #define SHOP_H
 
 using namespace std;
@@ -17,8 +17,9 @@ class Shop {
 	public:
 		int money;
 		void upgrade(int& money, int &player_boatlevel, int &player_rodlevl); //level up = How many level do you want to up
-		void sell(int fish_amount[], int slotfish, int& money);
+		void sell(int fish_amount[], int& slotfish, int& money);
 		int boatlevel(int player_boatlevel);
 		int rodlevel(int player_rodlevel);
-		void ShopControl(int&,int&,int&,int[], int);
+		void ShopControl(int&,int&,int&,int[], int&);
 };
+#endif
