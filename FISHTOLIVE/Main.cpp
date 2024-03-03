@@ -10,6 +10,7 @@
 #include <vector>
 #include <windows.h>
 #include "Event.h"
+#include <vector>
 using namespace std;
 
 struct Main
@@ -111,7 +112,36 @@ void Stat()
     SetConsoleTextAttribute(h, 7);
     cout << "Boat's level = " << player.boat_lvl << ", Rod's level " << player.rod_lvl << endl;
 }
+void Inventory(string bag[], int size,int allcost[]) {
+    vector<pair<string, int>> count;
 
+    // Count occurrences of each string
+    for (int i = 0; i < size; ++i) {
+        bool found = false;
+        for (auto& p : count) {
+            if (p.first == bag[i]) {
+                p.second++;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            count.push_back({ bag[i], 1 });
+        }
+    }
+
+    // Print counts of each string
+    for (const auto& p : count) {
+        std::cout << "You have "<< p.second << " " << p.first <<endl;
+    }
+    int totalprice = 0;
+    for (int i = 0; i <= size; i++)
+    {
+        totalprice += allcost[i];
+
+    }
+    cout << "You can make " << totalprice << " for now. " << endl;
+}
 void SetTime(int addH,int addM)
 {
     m.TMin += addM;
@@ -137,6 +167,19 @@ void Action(string act)
     if (act == "STAT")
     {
         Stat();
+    }
+    else if (act == "TANK")
+    {
+        cout << "=========================================\n";
+        cout << "\n";
+        if (fish.slotfish == 0)
+        {
+            cout << "You have nothing in your fish tank\n";
+        }
+        else
+        {
+            Inventory(fish.fishN, fish.slotfish,fish.fish_amount);
+        }
     }
     else if (act == "FISHING" || act == "FISH")
     {
@@ -202,8 +245,13 @@ int main()
         travel.IsTraveled = false;
         cout << "Day : " << m.DayPlayed << endl;
         showtime(m.THour, m.TMin);
+        cout << "\n";
         cout << "What would you like to do?\n";
-        cout << "|| Stat || Fishing || Travel || Shop || \n";
+        cout << "=========================================\n";
+        cout << "\n";
+        cout << "|| Stat : Check your status.\n|| Tank : Check your fish storage.\n|| Fishing : Cast a rod.\n|| Travel : Go to fishing area.\n|| Shop : Upgrade tools or Sell your fishes.\n";
+        cout << "=========================================\n";
+        cout << "\n";
         SetConsoleTextAttribute(C, 15);
         cout << "Enter your action : ";
         cin >> playeraction;
