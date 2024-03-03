@@ -8,7 +8,6 @@ using namespace std;
 class Event
 {
 public:
-    int money;
     string Event_List[4] = { "Shark_Attack","Stranger","Customer","Got_garbage" };
 
     void gotevent(string x, int& money, int fishamount[], int& fishslot, string fish[]);

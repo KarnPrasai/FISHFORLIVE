@@ -171,7 +171,7 @@ void Action(string act)
         shop.ShopControl(player.money, player.boat_lvl, player.rod_lvl, fish.fish_amount, fish.slotfish);
         if (fish.fish_amount == NULL)
         {
-            for (int i = 0; i < sizeof(fish.fishN); ++i) {
+            for (int i = 0; i < sizeof(fish.fishN)-1; ++i) {
                 fish.fishN[i] = ""; // Set each element to an empty string
             }
         }

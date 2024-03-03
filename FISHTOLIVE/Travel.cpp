@@ -24,6 +24,14 @@ void Travel::PlaceTravel(string& location,int& playergoing,int& boatlvl)
     cout << "Input Number of the place : ";
     int placeinput;
     cin >> placeinput;
+    if (!(cin >> placeinput))
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        cout << "Invalid input! Please enter a number between 1 and 6.\n";
+        return;
+    }
     PlaceChecker(placeinput, Old_location, location, playergoing, boatlvl);
 }
 
