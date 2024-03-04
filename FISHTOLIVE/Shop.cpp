@@ -99,7 +99,7 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
         cout << "\n";
         cout << "Your boat level = " << player_boatlevel << ",Your fishing rod level = " << player_rodlevel<<"." << endl;
         cout << "Your have " << money << "$ for now." << endl;
-        cout << "[1] fishing rod [2] boat [3] quit -> ";
+        cout << "[1] fishing rod [2] boat [3] quit " << "\n"<<"->";
         cin >> shopaction;
         cout << "\n";
         if (shopaction == 1) 
@@ -214,7 +214,7 @@ void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], 
         cout << "=========================================\n";
         cout << "\n";
         cout << "Welcome to the shop\n";
-        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
+        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit " << "\n"<< "->" ;
         cin >> shopact;
         cout << "\n";
         if (shopact == 1)
