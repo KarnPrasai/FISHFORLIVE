@@ -282,7 +282,8 @@ void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], 
         cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
         cout << "\033[1;31m" << "==========================================\n";
         cout << "\n";
-        cout << "\033[1;93m" << "[1] " << "\033[1;97m" << "Upgrade " << "\033[1;93m" << "[2] " << "\033[1;97m" << "Sell " << "\033[1;93m" << "[3] " << "\033[1;97m" << "Exit " << "\033[1;93m" << "\nInput number of your action. --> ";
+        cout << "Welcome to the shop\n";
+        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
         cin >> shopact;
         cout << "\n";
         if (shopact == 1)
