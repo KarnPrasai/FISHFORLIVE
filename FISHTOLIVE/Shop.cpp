@@ -32,7 +32,7 @@ int Shop::boatlevel(int player_boatlevel) {
         return boatprice;
     }
     else {
-        cout << "Your boat is max level ";
+        cout << "\033[1;31m" << "Your boat is max level \n";
         return 0;
     }
 
@@ -65,44 +65,62 @@ int Shop::rodlevel(int player_rodlevel) {
         return rodprice;
     }
     else {
-        cout << "Your rod is max level ";
+        cout << "\033[1;31m" << "Your rod is max level \n";
         return 0;
     }
 
 }
 
-void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
+void Shop::upgrade(int& money, int& player_boatlevel, int& player_rodlevel)
 {
     int shopaction;
     do
     {
-        cout << "=========================================\n";
+        cout << "\033[1;97m" << " ________________________________        \n";
+        cout << "\033[1;97m" << "|  Which gear do you to upgrade? \\       \n";
+        cout << "\033[1;97m" << "\\_______  _______________________|       \n";
+        cout << "         \\ |                              \n";
+        cout << "          \\|     " << "\033[0;33m" << "________\n" << "\033[1;97m";
+        cout << "                " << "\033[0;33m" << "/" << "\033[0;31m" << "________" << "\033[0;33m" << "\\                \n" << "\033[1;97m";
+        cout << "             " << "\033[0;33m" << "___" << "\033[0;31m" << "|________|" << "\033[0;33m" << "___             \n" << "\033[1;97m";
+        cout << "            " << "\033[0;33m" << "/________________\\            \n" << "\033[1;97m";
+        cout << "              " << "\033[1;90m" << "< /\\|_\\|_|/\\ >              \n" << "\033[1;97m";
+        cout << "               " << "\033[1;93m" << "(|" << "\033[1;90m" << "  0  0} " << "\033[1;93m" << "|)               \n" << "\033[1;97m";
+        cout << "                " << "\033[1;93m" << "|   " << "\033[1;31m" << "\\/   " << "\033[1;93m" << "|                \n" << "\033[1;97m";
+        cout << "            " << "\033[0;31m" << "_____" << "\033[1;93m" << "\\______/" << "\033[0;31m" << "_____            \n" << "\033[1;97m";
+        cout << "           " << "\033[0;31m" << "/     (      )     \\           \n";
+        cout << "          " << "\033[0;31m" << "/       |" << "\033[1;31m" << "\\  /" << "\033[0;31m" << "|       \\          \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << " \\/ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << ">  <" << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "\033[1;31m" << "==========================================\n";
         cout << "\n";
-        cout << "Which gear do you to upgrade?\n";
-        if (player_rodlevel == 7)
+        if (player_rodlevel >= 7)
         {
-            cout << "Your rod is max level.\n";
+            cout << "\033[1;31m" << "Your rod is max level.\n";
         }
         else
         {
-            cout << "Fishing rod level" << player_rodlevel + 1<< " ,upgrade price = " << rodlevel(player_rodlevel + 1) << endl;
+            cout << "\033[1;97m" << "Fishing rod level" << "\033[1;31m" << player_rodlevel + 1 << "\033[1;97m" << " ,upgrade price = " << "\033[1;31m" << rodlevel(player_rodlevel + 1) << endl;
+            cout << "\033[1;31m" << "(Increase the rarity of fish that can be caught.)\n";
         }
-        if (player_boatlevel == 6)
+        if (player_boatlevel >= 6)
         {
-            cout << "Your boat is max level.\n";
+            cout << "\033[1;31m" << "Your boat is max level.\n";
+            cout << "\033[1;31m" << "(For traveling to the other place.)\n";
         }
         else
         {
-            cout << "Boat level " << player_boatlevel + 1 << " ,upgrade price = " << boatlevel(player_boatlevel + 1) << endl;
+            cout << "\033[1;97m" << "Boat level " << "\033[1;31m" << player_boatlevel + 1 << "\033[1;97m" << " ,upgrade price = " << "\033[1;31m" << boatlevel(player_boatlevel + 1) << endl;
         }
-            
+
         cout << "\n";
-        cout << "Your boat level = " << player_boatlevel << ",Your fishing rod level = " << player_rodlevel<<"." << endl;
-        cout << "Your have " << money << "$ for now." << endl;
-        cout << "[1] fishing rod [2] boat [3] quit -> ";
+        cout << "\033[1;97m" << "Your boat level = " << "\033[0;32m" << player_boatlevel << "\033[1;97m" << ",Your fishing rod level = " << "\033[0;32m" << player_rodlevel << endl;
+        cout << "\033[1;97m" << "Your have " << "\033[0;32m" << money << "\033[1;97m" << "$ for now." << endl;
+        cout << "\033[1;93m" << "[1] " << "\033[1;97m" << "fishing rod " << "\033[1;93m" << "[2] " << "\033[1;97m" << "boat " << "\033[1;93m" << "[3] " << "\033[1;97m" << "quit " << "\033[1;93m" << "\nInput number of your action. --> ";
         cin >> shopaction;
         cout << "\n";
-        if (shopaction == 1) 
+        if (shopaction == 1)
         {
             int rodp = rodlevel(player_rodlevel + 1);
             if (player_rodlevel < 7)
@@ -111,99 +129,133 @@ void Shop::upgrade(int& money,int &player_boatlevel,int &player_rodlevel)
                 {
                     player_rodlevel += 1;
                     money -= rodp;
-                    cout << "Your have" << money << "$ Left." << endl;
+                    cout << "\033[1;31m" << "Your have " << "\033[0;32m" << money << "\033[1;97m" << "$ Left." << endl;
                 }
                 else
                 {
-                    cout << "You don't have enough money.";
+                    cout << "\033[1;31m" << "You don't have enough money.\n";
                 }
             }
             else
             {
-                cout << "Your rod is max level";
+                cout << "\033[1;31m" << "Your rod is max level\n";
             }
-            
+
         }
-        else if (shopaction == 2) 
+        else if (shopaction == 2)
         {
             int boatp = boatlevel(player_boatlevel + 1);
-            if (player_boatlevel < 7)
+            if (player_boatlevel < 6)
             {
                 if (money >= boatp)
                 {
                     player_boatlevel += 1;
                     money -= boatp;
-                    cout << "Your have" << money << "$ Left." << endl;
+                    cout << "\033[1;97m" << "Your have " << "\033[0;32m" << money << "\033[1;97m" << "$ Left." << endl;
                 }
                 else
                 {
-                    cout << "You don't have enough money.";
+                    cout << "\033[1;31m" << "You don't have enough money.\n";
                 }
             }
             else
             {
-                cout << "Your rod is max level";
+                cout << "\033[1;31m" << "Your rod is max level\n";
             }
             //upgrade boat
-            
+
         }
-        else 
+        else
         {
-            cout << "Invalid input. Please choose again." << endl;
+            cout << "\033[1;31m" << "Invalid input. Please choose again.\n" << "\033[0m";
             cin.clear();    // Clear error flags
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
         }
-    }while (shopaction != 3);
+    } while (shopaction != 3);
 }
 
-void Shop::sell(int fish_amount[],int& slotfish,int &money)
+void Shop::sell(int fish_amount[], int& slotfish, int& money)
 {
     int shopsell = 0;
     do
     {
-        cout << "=========================================\n";
+        cout << "\033[1;97m" << " ______________________________________  \n";
+        cout << "\033[1;97m" << "| Do you really want to sell all fish? \\       \n";
+        cout << "\033[1;97m" << "\\_______  _____________________________|       \n";
+        cout << "         \\ |                              \n";
+        cout << "          \\|     " << "\033[0;33m" << "________\n" << "\033[1;97m";
+        cout << "                " << "\033[0;33m" << "/" << "\033[0;31m" << "________" << "\033[0;33m" << "\\                \n" << "\033[1;97m";
+        cout << "             " << "\033[0;33m" << "___" << "\033[0;31m" << "|________|" << "\033[0;33m" << "___             \n" << "\033[1;97m";
+        cout << "            " << "\033[0;33m" << "/________________\\            \n" << "\033[1;97m";
+        cout << "              " << "\033[1;90m" << "< /\\|_\\|_|/\\ >              \n" << "\033[1;97m";
+        cout << "               " << "\033[1;93m" << "(|" << "\033[1;90m" << "  0  0} " << "\033[1;93m" << "|)               \n" << "\033[1;97m";
+        cout << "                " << "\033[1;93m" << "|   " << "\033[1;31m" << "\\/   " << "\033[1;93m" << "|                \n" << "\033[1;97m";
+        cout << "            " << "\033[0;31m" << "_____" << "\033[1;93m" << "\\______/" << "\033[0;31m" << "_____            \n" << "\033[1;97m";
+        cout << "           " << "\033[0;31m" << "/     (      )     \\           \n";
+        cout << "          " << "\033[0;31m" << "/       |" << "\033[1;31m" << "\\  /" << "\033[0;31m" << "|       \\          \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << " \\/ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << ">  <" << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "\033[1;31m" << "==========================================\n";
         cout << "\n";
-        cout << "Do you really want to sell all fish?\n";
-        cout << "[1] YES [2] NO -> ";
+        cout << "\033[1;93m" << "[1] " << "\033[1;97m" << "YES " << "\033[1;93m" << "[2] " << "\033[1;97m" << "NO " << "\033[1;93m" << "\nInput number of your action. --> ";
         cin >> shopsell;
         cout << "\n";
         if (shopsell == 1)
         {
-            if(slotfish <= 0)
+            if (slotfish <= 0)
             {
-                cout << "Why are you here? You don't have any fish to sell." << endl;
+                cout << "\033[1;31m" << "Why are you here? You don't have any fish to sell.\n" << endl;
             }
             else
             {
                 int totalprice = 0;
-                for (int i = 0; i <= slotfish; i++) 
+                for (int i = 0; i <= slotfish; i++)
                 {
-                     totalprice += fish_amount[i];
+                    totalprice += fish_amount[i];
 
                 }
-                cout << "You got  " << totalprice << " from selling " << slotfish << " fishes." << endl;
+                cout << "\033[1;97m" << "You got  " << "\033[1;31m" << totalprice << "\033[1;97m" << " from selling " << "\033[1;31m" << slotfish << "\033[1;97m" << " fishes.\n";
                 money += totalprice;
-                cout << "Your have " << money << "$ for now." << endl;
-                for (int i = 0; i <= slotfish; i++) 
+                cout << "\033[1;97m" << "Your have " << "\033[1;31m" << money << "\033[1;97m" << "$ for now.\n";
+                for (int i = 0; i <= slotfish; i++)
                 {
                     fish_amount[i] = 0;
                 }
                 slotfish = 0;
             }
-            
+
         }
-        else if (shopsell == 2) 
+        else if (shopsell == 2)
         {
-            cout << "You decided not to sell fish." << endl;
+            cout << "\033[1;31m" << "You decided not to sell fish." << endl;
         }
         else
         {
-            cout << "Invalid input. Please choose again." << endl;
+            cout << "\033[1;31m" << "Invalid input. Please choose again.\n" << "\033[0m";
             cin.clear();    // Clear error flags
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
         }
-    } while (shopsell !=1 && shopsell != 2);
-    cout << "Good luck sir"<<endl;
+    } while (shopsell != 1 && shopsell != 2);
+    cout << "\033[1;97m" << " ___________________        \n";
+    cout << "\033[1;97m" << "|     Good luck sir \\       \n";
+    cout << "\033[1;97m" << "\\_______  __________|       \n";
+    cout << "         \\ |                              \n";
+    cout << "          \\|     " << "\033[0;33m" << "________\n" << "\033[1;97m";
+    cout << "                " << "\033[0;33m" << "/" << "\033[0;31m" << "________" << "\033[0;33m" << "\\                \n" << "\033[1;97m";
+    cout << "             " << "\033[0;33m" << "___" << "\033[0;31m" << "|________|" << "\033[0;33m" << "___             \n" << "\033[1;97m";
+    cout << "            " << "\033[0;33m" << "/________________\\            \n" << "\033[1;97m";
+    cout << "              " << "\033[1;90m" << "< /\\|_\\|_|/\\ >              \n" << "\033[1;97m";
+    cout << "               " << "\033[1;93m" << "(|" << "\033[1;90m" << "  0  0} " << "\033[1;93m" << "|)               \n" << "\033[1;97m";
+    cout << "                " << "\033[1;93m" << "|   " << "\033[1;31m" << "\\/   " << "\033[1;93m" << "|                \n" << "\033[1;97m";
+    cout << "            " << "\033[0;31m" << "_____" << "\033[1;93m" << "\\______/" << "\033[0;31m" << "_____            \n" << "\033[1;97m";
+    cout << "           " << "\033[0;31m" << "/     (      )     \\           \n";
+    cout << "          " << "\033[0;31m" << "/       |" << "\033[1;31m" << "\\  /" << "\033[0;31m" << "|       \\          \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << " \\/ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << ">  <" << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "\033[1;31m" << "==========================================\n";
+    cout << "\n";
 
 }
 
@@ -211,10 +263,26 @@ void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], 
 {
     int shopact = 0;
     do {
-        cout << "=========================================\n";
+        cout << "\033[1;97m" << " ________________________________________\n";
+        cout << "\033[1;97m" << "| Welcome to the shop. What do you want? \\       \n";
+        cout << "\033[1;97m" << "\\_______  _______________________________|       \n";
+        cout << "         \\ |                              \n";
+        cout << "          \\|     " << "\033[0;33m" << "________\n" << "\033[1;97m";
+        cout << "                " << "\033[0;33m" << "/" << "\033[0;31m" << "________" << "\033[0;33m" << "\\                \n" << "\033[1;97m";
+        cout << "             " << "\033[0;33m" << "___" << "\033[0;31m" << "|________|" << "\033[0;33m" << "___             \n" << "\033[1;97m";
+        cout << "            " << "\033[0;33m" << "/________________\\            \n" << "\033[1;97m";
+        cout << "              " << "\033[1;90m" << "< /\\|_\\|_|/\\ >              \n" << "\033[1;97m";
+        cout << "               " << "\033[1;93m" << "(|" << "\033[1;90m" << "  0  0} " << "\033[1;93m" << "|)               \n" << "\033[1;97m";
+        cout << "                " << "\033[1;93m" << "|   " << "\033[1;31m" << "\\/   " << "\033[1;93m" << "|                \n" << "\033[1;97m";
+        cout << "            " << "\033[0;31m" << "_____" << "\033[1;93m" << "\\______/" << "\033[0;31m" << "_____            \n" << "\033[1;97m";
+        cout << "           " << "\033[0;31m" << "/     (      )     \\           \n";
+        cout << "          " << "\033[0;31m" << "/       |" << "\033[1;31m" << "\\  /" << "\033[0;31m" << "|       \\          \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << " \\/ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << ">  <" << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+        cout << "\033[1;31m" << "==========================================\n";
         cout << "\n";
-        cout << "Welcome to the shop\n";
-        cout << "What do you want?\n" << "[1] Upgrade [2] Sell [3] Exit -> ";
+        cout << "\033[1;93m" << "[1] " << "\033[1;97m" << "Upgrade " << "\033[1;93m" << "[2] " << "\033[1;97m" << "Sell " << "\033[1;93m" << "[3] " << "\033[1;97m" << "Exit " << "\033[1;93m" << "\nInput number of your action. --> ";
         cin >> shopact;
         cout << "\n";
         if (shopact == 1)
@@ -224,10 +292,27 @@ void Shop::ShopControl(int& money, int& boatlvl, int& rodlvl, int fishamount[], 
         else if (shopact == 3)
             break;  // Exit the loop if the user chooses to quit
         else {
-            cout << "Invalid Input, Please try again\n";
+            cout << "\033[1;31m" << "Invalid Input, Please try again\n" << "\033[0m";
             cin.clear();    // Clear error flags
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
         }
     } while (true);  // Loop indefinitely until the user chooses to quit
-    cout << "Goodbye\n";
+    cout << "\033[1;97m" << " _________________                           \n";
+    cout << "\033[1;97m" << "|     Goodbye     \\       \n";
+    cout << "\033[1;97m" << "\\________  _______|       \n";
+    cout << "         \\ |                              \n";
+    cout << "          \\|     " << "\033[0;33m" << "________\n" << "\033[1;97m";
+    cout << "                " << "\033[0;33m" << "/" << "\033[0;31m" << "________" << "\033[0;33m" << "\\                \n" << "\033[1;97m";
+    cout << "             " << "\033[0;33m" << "___" << "\033[0;31m" << "|________|" << "\033[0;33m" << "___             \n" << "\033[1;97m";
+    cout << "            " << "\033[0;33m" << "/________________\\            \n" << "\033[1;97m";
+    cout << "              " << "\033[1;90m" << "< /\\|_\\|_|/\\ >              \n" << "\033[1;97m";
+    cout << "               " << "\033[1;93m" << "(|" << "\033[1;90m" << "  0  0} " << "\033[1;93m" << "|)               \n" << "\033[1;97m";
+    cout << "                " << "\033[1;93m" << "|   " << "\033[1;31m" << "\\/   " << "\033[1;93m" << "|                \n" << "\033[1;97m";
+    cout << "            " << "\033[0;31m" << "_____" << "\033[1;93m" << "\\______/" << "\033[0;31m" << "_____            \n" << "\033[1;97m";
+    cout << "           " << "\033[0;31m" << "/     (      )     \\           \n";
+    cout << "          " << "\033[0;31m" << "/       |" << "\033[1;31m" << "\\  /" << "\033[0;31m" << "|       \\          \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << " \\/ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   |" << "\033[1;31m" << ">  <" << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "         " << "\033[0;31m" << "|    |   | " << "\033[1;31m" << "/\\ " << "\033[0;31m" << "|    |   |         \n" << "\033[1;97m";
+    cout << "\033[1;31m" << "==========================================\n";
 }

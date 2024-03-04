@@ -6,9 +6,9 @@ using namespace std;
 class Player
 {
     public:
-        int money = 1000000;
-        int boat_lvl = 7;
-        int rod_lvl = 7;
+        int money = 0;
+        int boat_lvl = 1;
+        int rod_lvl = 1;
         string location = "River";
         bool end = false;
 };
