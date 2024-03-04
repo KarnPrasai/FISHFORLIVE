@@ -363,11 +363,4 @@ int main()
         SetConsoleTextAttribute(C, 7);
         Quotacheck();
     }
-    cout << "\033[1;31m" << "=========================================\n" << "\033[0m";
-    cout << "\n";
-    cout << "\033[1;31m" << "Game Over\n" << "\033[0m";
-    cout << "You have survived "<< m.DayPlayed-1 << " Days.\n";
-    cout << "\n";
-    cout << "\033[1;31m" << "=========================================\n" << "\033[0m";
-    cout << "\n";
 }
