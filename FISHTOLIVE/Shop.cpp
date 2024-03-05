@@ -31,8 +31,8 @@ int Shop::boatlevel(int player_boatlevel) {
         boatprice = 50000;
         return boatprice;
     }
-    else {
-        cout << "\033[1;31m" << "Your boat is max level \n";
+    else 
+    {
         return 0;
     }
 
@@ -64,8 +64,8 @@ int Shop::rodlevel(int player_rodlevel) {
         rodprice = 20000;
         return rodprice;
     }
-    else {
-        cout << "\033[1;31m" << "Your rod is max level \n";
+    else 
+    {
         return 0;
     }
 
@@ -107,11 +107,11 @@ void Shop::upgrade(int& money, int& player_boatlevel, int& player_rodlevel)
         if (player_boatlevel >= 6)
         {
             cout << "\033[1;31m" << "Your boat is max level.\n";
-            cout << "\033[1;31m" << "(For traveling to the other place.)\n";
         }
         else
         {
             cout << "\033[1;97m" << "Boat level " << "\033[1;31m" << player_boatlevel + 1 << "\033[1;97m" << " ,upgrade price = " << "\033[1;31m" << boatlevel(player_boatlevel + 1) << endl;
+            cout << "\033[1;31m" << "(For traveling to the other place.)\n";
         }
 
         cout << "\n";
@@ -160,7 +160,7 @@ void Shop::upgrade(int& money, int& player_boatlevel, int& player_rodlevel)
             }
             else
             {
-                cout << "\033[1;31m" << "Your rod is max level\n";
+                cout << "\033[1;31m" << "Your boat is max level\n";
             }
             //upgrade boat
 
